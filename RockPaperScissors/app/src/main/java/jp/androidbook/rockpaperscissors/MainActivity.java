@@ -3,6 +3,7 @@ package jp.androidbook.rockpaperscissors;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+//==メインシーンのアクティビティー
 public class MainActivity extends AppCompatActivity {
 
     @Override
