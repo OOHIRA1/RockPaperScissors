@@ -2,4 +2,6 @@
     <string name="app_name">RockPaperScissors</string>
     <string name="rock">Rock</string>
     <string name="jannkenn">じゃんけん...</string>
+    <string name="scissors">Scissors</string>
+    <string name="paper">Paper</string>
 </resources>
