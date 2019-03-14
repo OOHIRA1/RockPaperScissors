@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Random;
 
 //==メインシーンのアクティビティー
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +46,23 @@ public class MainActivity extends AppCompatActivity {
         TextView textViewYou = (TextView)this.findViewById(R.id.textViewYou);
         textViewYou.setText("あなた");
         ImageView cpuHand  = (ImageView)this.findViewById(R.id.cpuHandImageView);
-        cpuHand.setImageResource(R.drawable.rock_small);
+        //CPUのじゃんけん処理-------------------------------------------------------------------------------
+        Random random = new Random();
+        int cpuJannkennIndex = random.nextInt(COUNT_OF_JANNKENN);   //CPUが出したじゃんけんの種類のIndex
+        switch(cpuJannkennIndex) {
+            case ROCK:
+                cpuHand.setImageResource(R.drawable.rock_small);
+                break;
+            case SCISSORS:
+                cpuHand.setImageResource(R.drawable.scissor_small);
+                break;
+            case PAPER:
+                cpuHand.setImageResource(R.drawable.paper_small);
+                break;
+            default:
+                break;
+        }
+        //-------------------------------------------------------------------------------------------------
         TextView textViewCPU = (TextView)this.findViewById(R.id.textViewCPU);
         textViewCPU.setText("CPU");
     }
