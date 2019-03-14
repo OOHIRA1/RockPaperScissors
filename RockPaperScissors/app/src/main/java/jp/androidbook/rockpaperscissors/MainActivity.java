@@ -39,10 +39,22 @@ public class MainActivity extends AppCompatActivity {
     }
     //=============================================================
 
-    public void RockButtonClicked(View view) {
+    //--じゃんけんボタンをクリックした時の共通処理
+    private void JannkennButtonClicked() {
         textView.setText("ポン！！");
+        TextView textViewYou = (TextView)this.findViewById(R.id.textViewYou);
+        textViewYou.setText("あなた");
+        ImageView cpuHand  = (ImageView)this.findViewById(R.id.cpuHandImageView);
+        cpuHand.setImageResource(R.drawable.rock_small);
+        TextView textViewCPU = (TextView)this.findViewById(R.id.textViewCPU);
+        textViewCPU.setText("CPU");
+    }
+
+    //public関数===========================================================================
+    public void RockButtonClicked(View view) {
         ImageView yourHand = (ImageView)this.findViewById(R.id.yourHandImageView);
         yourHand.setImageResource(R.drawable.rock_small);
+        JannkennButtonClicked();
         for(int i = 0; i < buttons.length; i++) {
             viewGroup.removeView(buttons[i]);
         }
@@ -50,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void ScissorsButtonClicked(View view) {
-        textView.setText("ポン！！");
         ImageView yourHand = (ImageView)this.findViewById(R.id.yourHandImageView);
         yourHand.setImageResource(R.drawable.scissor_small);
+        JannkennButtonClicked();
         for(int i = 0; i < buttons.length; i++) {
             viewGroup.removeView(buttons[i]);
         }
@@ -60,11 +72,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void PaperButtonClicked(View view) {
-        textView.setText("ポン！！");
         ImageView yourHand = (ImageView)this.findViewById(R.id.yourHandImageView);
         yourHand.setImageResource(R.drawable.paper_small);
+        JannkennButtonClicked();
         for(int i = 0; i < buttons.length; i++) {
             viewGroup.removeView(buttons[i]);
         }
     }
+    //======================================================================================
 }

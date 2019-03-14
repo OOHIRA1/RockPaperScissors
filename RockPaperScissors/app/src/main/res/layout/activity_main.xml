@@ -19,12 +19,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/cpuHandImageView"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50sp"
+        android:contentDescription="@string/cpuhandimageview" />
+
+    <TextView
+        android:id="@+id/textViewCPU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/cpuHandImageView"
+        android:layout_toStartOf="@id/cpuHandImageView"
+        android:layout_toLeftOf="@id/cpuHandImageView"
+        android:contentDescription="@string/cpu"
+        android:textSize="30sp" />
+
+    <ImageView
         android:id="@+id/yourHandImageView"
         android:layout_width="120sp"
         android:layout_height="120sp"
+        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:contentDescription="@string/yourhand"
-        app:srcCompat="@drawable/rock_small" />
+        android:layout_marginBottom="50sp"
+        android:contentDescription="@string/yourhand" />
+
+    <TextView
+        android:id="@+id/textViewYou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/yourHandImageView"
+        android:layout_toStartOf="@id/yourHandImageView"
+        android:layout_toLeftOf="@id/yourHandImageView"
+        android:contentDescription="@string/you"
+        android:textSize="30sp" />
 
     <ImageButton
         android:id="@+id/RockButton"

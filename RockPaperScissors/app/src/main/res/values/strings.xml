@@ -5,4 +5,7 @@
     <string name="scissors">Scissors</string>
     <string name="paper">Paper</string>
     <string name="yourhand">yourHand</string>
+    <string name="cpuhandimageview">CpuHandImageView</string>
+    <string name="cpu">CPU</string>
+    <string name="you">YOU</string>
 </resources>
