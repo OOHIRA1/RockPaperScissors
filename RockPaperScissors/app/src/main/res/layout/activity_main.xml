@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/jannkennText"
+        android:id="@+id/jannkennTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/jannkenn"
@@ -18,15 +18,24 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/yourHandImageView"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/yourhand"
+        app:srcCompat="@drawable/rock_small" />
+
     <ImageButton
         android:id="@+id/RockButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:contentDescription="@string/rock"
-        app:srcCompat="@drawable/rock_small"
+        android:layout_marginStart="60sp"
         android:layout_marginLeft="60sp"
-        android:layout_marginStart="60sp" />
+        android:contentDescription="@string/rock"
+        android:onClick="RockButtonClicked"
+        app:srcCompat="@drawable/rock_small" />
 
     <ImageButton
         android:id="@+id/ScissorsButton"
@@ -35,18 +44,20 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:contentDescription="@string/scissors"
+        android:onClick="ScissorsButtonClicked"
         app:srcCompat="@drawable/scissor_small" />
 
     <ImageButton
         android:id="@+id/PaperButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:contentDescription="@string/paper"
-        app:srcCompat="@drawable/paper_small"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="60sp"
         android:layout_marginRight="60sp"
-        android:layout_marginEnd="60sp"/>
+        android:contentDescription="@string/paper"
+        android:onClick="PaperButtonClicked"
+        app:srcCompat="@drawable/paper_small" />
 
 </RelativeLayout>
