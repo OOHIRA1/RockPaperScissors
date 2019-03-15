@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     private int RPSButtonClicked() {
         _textView.setText("ポン！！");
         TextView textViewYou = (TextView)this.findViewById(R.id.TextViewYou);
-        textViewYou.setText("あなた");
+        textViewYou.setText("YOU");
         ImageView cpuHand  = (ImageView)this.findViewById(R.id.CPUHandImageView);
         //CPUのじゃんけん処理-------------------------------------------------------------------------------
         Random random = new Random();
