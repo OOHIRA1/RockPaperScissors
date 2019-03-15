@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-//import android.widget.Button;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,15 +22,23 @@ public class MainActivity extends AppCompatActivity {
     final int SCISSORS = 1;
     final int PAPER = 2;
     final int COUNT_OF_RPS = 3;    //じゃんけんの種類数(RPSはRockPaperScissorsの略)
+    public static final int NEXT = 0;
+    public static final int BACK = 1;
+    public static final int RESULT_BUTTON_COUNT = 2;  //勝敗結果ボタン配列の要素数
+    final int WIN = 0;
+    final int LOSE = 1;
+    final int DORW = 2;
     //UI関連===========================================================================
-    private ImageButton[] _buttons;   //じゃんけんボタン配列
+    private ImageButton[] _RPSbuttons;   //じゃんけんボタン配列
     private TextView _textView;       //画面上部のテキスト
     private ViewGroup viewGroup;
-    private int _countOfWin;        //勝利回数
     private ResultSurfaceView _resultSurfaceView;   //じゃんけん結果表示画面View
     private TextView _resultTextView;               //勝敗を表示するテキストView
     private TextView _countOfWinTextView;           //連勝回数を表示するテキストView
+    private Button[] _resultButtons;                  //勝敗結果画面で表示するボタン配列
     //=================================================================================
+    private int _countOfWin;        //勝利回数
+    private int _result;            //じゃんけんの勝敗(0:勝ち, 1:負け, 2:引き分け)
 
 
 
@@ -39,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        _buttons = new ImageButton[COUNT_OF_RPS];   //配列のメモリ確保
-        _buttons[ROCK] = (ImageButton) this.findViewById(R.id.RockButton);
-        _buttons[SCISSORS] = (ImageButton)this.findViewById(R.id.ScissorsButton);
-        _buttons[PAPER] = (ImageButton)this.findViewById(R.id.PaperButton);
+        _RPSbuttons = new ImageButton[COUNT_OF_RPS];   //配列のメモリ確保
+        _RPSbuttons[ROCK] = (ImageButton) this.findViewById(R.id.RockButton);
+        _RPSbuttons[SCISSORS] = (ImageButton)this.findViewById(R.id.ScissorsButton);
+        _RPSbuttons[PAPER] = (ImageButton)this.findViewById(R.id.PaperButton);
         _textView = (TextView) this.findViewById(R.id.RPSTextView);
         viewGroup = (ViewGroup) _textView.getParent();
         _countOfWin = 0;    //勝利回数を0にする
@@ -50,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
         _resultTextView.setText("");
         _countOfWinTextView = (TextView)this.findViewById(R.id.CountOfWinTextView);
         _countOfWinTextView.setText("");
+        _resultButtons = new Button[RESULT_BUTTON_COUNT];   //配列のメモリ確保
+        _resultButtons[NEXT] = (Button)this.findViewById(R.id.Nextbutton);
+        _resultButtons[NEXT].setVisibility(View.INVISIBLE);
+        _resultButtons[BACK] = (Button)this.findViewById(R.id.Backbutton);
+        _resultButtons[BACK].setVisibility(View.INVISIBLE);
+        _result = -1;   //初期値は-1
     }
     //=============================================================
 
@@ -78,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         //-------------------------------------------------------------------------------------------------
         TextView textViewCPU = (TextView)this.findViewById(R.id.TextViewCPU);
         textViewCPU.setText("CPU");
+
         return cpuRPSIndex;
     }
 
@@ -86,12 +101,12 @@ public class MainActivity extends AppCompatActivity {
     private int Judge( int playerRPSIndex, int cpuRPSIndex ) {
         int returnVal;
         if ( playerRPSIndex == ((cpuRPSIndex + 2) % 3) ) {
-            returnVal = 0;//勝利
+            returnVal = WIN;//勝利
             _countOfWin++;
         } else if ( playerRPSIndex == ((cpuRPSIndex + 1) % 3) ) {
-            returnVal = 1;//敗北
+            returnVal = LOSE;//敗北
         } else {
-            returnVal = 2;//引き分け
+            returnVal = DORW;//引き分け
         }
         return returnVal;
     }
@@ -101,11 +116,12 @@ public class MainActivity extends AppCompatActivity {
         ImageView yourHand = (ImageView)this.findViewById(R.id.YourHandImageView);
         yourHand.setImageResource(R.drawable.rock_small);
         int cpuRPSIndex = RPSButtonClicked();
-        for(int i = 0; i < _buttons.length; i++) {
-            //viewGroup.removeView(_buttons[i]);
-            _buttons[i].setVisibility(View.INVISIBLE);
+        for(int i = 0; i < _RPSbuttons.length; i++) {
+            //viewGroup.removeView(_RPSbuttons[i]);
+            _RPSbuttons[i].setVisibility(View.INVISIBLE);
         }
-        _resultSurfaceView = new ResultSurfaceView( this, Judge(ROCK, cpuRPSIndex), _resultTextView, _countOfWinTextView, _countOfWin );
+        _result = Judge(ROCK, cpuRPSIndex);
+        _resultSurfaceView = new ResultSurfaceView( this, _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons );
         _resultSurfaceView.setBackgroundColor(Color.WHITE);
         viewGroup.addView(_resultSurfaceView, 0);
     }
@@ -115,10 +131,11 @@ public class MainActivity extends AppCompatActivity {
         ImageView yourHand = (ImageView)this.findViewById(R.id.YourHandImageView);
         yourHand.setImageResource(R.drawable.scissor_small);
         int cpuRPSIndex = RPSButtonClicked();
-        for(int i = 0; i < _buttons.length; i++) {
-            _buttons[i].setVisibility(View.INVISIBLE);
+        for(int i = 0; i < _RPSbuttons.length; i++) {
+            _RPSbuttons[i].setVisibility(View.INVISIBLE);
         }
-        _resultSurfaceView = new ResultSurfaceView( this.getApplicationContext(), Judge(SCISSORS, cpuRPSIndex), _resultTextView, _countOfWinTextView, _countOfWin);
+        _result = Judge(SCISSORS, cpuRPSIndex);
+        _resultSurfaceView = new ResultSurfaceView( this.getApplicationContext(), _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons);
         _resultSurfaceView.setBackgroundColor(Color.WHITE);
         viewGroup.addView(_resultSurfaceView, 0);
     }
@@ -128,12 +145,38 @@ public class MainActivity extends AppCompatActivity {
         ImageView yourHand = (ImageView)this.findViewById(R.id.YourHandImageView);
         yourHand.setImageResource(R.drawable.paper_small);
         int cpuRPSIndex = RPSButtonClicked();
-        for(int i = 0; i < _buttons.length; i++) {
-            _buttons[i].setVisibility(View.INVISIBLE);
+        for(int i = 0; i < _RPSbuttons.length; i++) {
+            _RPSbuttons[i].setVisibility(View.INVISIBLE);
         }
-        _resultSurfaceView = new ResultSurfaceView( this.getApplicationContext(), Judge(PAPER, cpuRPSIndex), _resultTextView, _countOfWinTextView, _countOfWin);
+        _result = Judge(PAPER, cpuRPSIndex);
+        _resultSurfaceView = new ResultSurfaceView( this.getApplicationContext(), _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons);
         _resultSurfaceView.setBackgroundColor(Color.WHITE);
         viewGroup.addView(_resultSurfaceView, 0);
+    }
+
+
+    public void NextButtonClicked(View view) {
+        for (int i = 0; i < _resultButtons.length; i++) {
+            _resultButtons[i].setVisibility(View.INVISIBLE);
+        }
+        _resultTextView.setText("");
+        _countOfWinTextView.setText("");
+        _textView.setText("じゃんけん…");
+        TextView textViewYou = (TextView)this.findViewById(R.id.TextViewYou);
+        textViewYou.setText("");
+        TextView textViewCPU = (TextView)this.findViewById(R.id.TextViewCPU);
+        textViewCPU.setText("");
+        for (int i = 0; i < _RPSbuttons.length; i++) {
+            _RPSbuttons[i].setVisibility(View.VISIBLE);
+        }
+        if( _result == LOSE ) {//負けていたら勝敗回数をリセット
+            _countOfWin = 0;
+        }
+    }
+
+
+    public void BackButtonClicked(View view) {
+
     }
     //======================================================================================
 }

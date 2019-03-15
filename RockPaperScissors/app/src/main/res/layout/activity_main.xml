@@ -79,6 +79,32 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/Nextbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50sp"
+        android:layout_marginLeft="50sp"
+        android:layout_marginBottom="50sp"
+        android:onClick="NextButtonClicked"
+        android:text="次へ"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/Backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="50sp"
+        android:layout_marginRight="50sp"
+        android:layout_marginBottom="50sp"
+        android:onClick="BackButtonClicked"
+        android:text="戻る"
+        android:textSize="24sp" />
+
     <ImageButton
         android:id="@+id/RockButton"
         android:layout_width="wrap_content"
