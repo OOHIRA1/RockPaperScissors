@@ -172,6 +172,10 @@ public class MainActivity extends AppCompatActivity {
         if( _result == LOSE ) {//負けていたら勝敗回数をリセット
             _countOfWin = 0;
         }
+        ImageView yourHand = (ImageView)this.findViewById(R.id.YourHandImageView);
+        yourHand.setImageBitmap(null);
+        ImageView cpuHand  = (ImageView)this.findViewById(R.id.CPUHandImageView);
+        cpuHand.setImageBitmap(null);
     }
 
 
