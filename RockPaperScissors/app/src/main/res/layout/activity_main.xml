@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
-        android:id="@+id/jannkennTextView"
+        android:id="@+id/RPSTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/jannkenn"
@@ -19,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/cpuHandImageView"
+        android:id="@+id/CPUHandImageView"
         android:layout_width="120sp"
         android:layout_height="120sp"
         android:layout_alignParentTop="true"
@@ -28,17 +29,17 @@
         android:contentDescription="@string/cpuhandimageview" />
 
     <TextView
-        android:id="@+id/textViewCPU"
+        android:id="@+id/TextViewCPU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/cpuHandImageView"
-        android:layout_toStartOf="@id/cpuHandImageView"
-        android:layout_toLeftOf="@id/cpuHandImageView"
+        android:layout_alignBottom="@id/CPUHandImageView"
+        android:layout_toStartOf="@id/CPUHandImageView"
+        android:layout_toLeftOf="@id/CPUHandImageView"
         android:contentDescription="@string/cpu"
         android:textSize="30sp" />
 
     <ImageView
-        android:id="@+id/yourHandImageView"
+        android:id="@+id/YourHandImageView"
         android:layout_width="120sp"
         android:layout_height="120sp"
         android:layout_alignParentBottom="true"
@@ -47,14 +48,36 @@
         android:contentDescription="@string/yourhand" />
 
     <TextView
-        android:id="@+id/textViewYou"
+        android:id="@+id/TextViewYou"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/yourHandImageView"
-        android:layout_toStartOf="@id/yourHandImageView"
-        android:layout_toLeftOf="@id/yourHandImageView"
+        android:layout_alignBottom="@id/YourHandImageView"
+        android:layout_toStartOf="@id/YourHandImageView"
+        android:layout_toLeftOf="@id/YourHandImageView"
         android:contentDescription="@string/you"
         android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ResultTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="あなたの勝ち"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/CountOfWinTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="○○連勝中"
+            android:textSize="30sp" />
+
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/RockButton"
@@ -89,5 +112,6 @@
         android:contentDescription="@string/paper"
         android:onClick="PaperButtonClicked"
         app:srcCompat="@drawable/paper_small" />
+
 
 </RelativeLayout>
