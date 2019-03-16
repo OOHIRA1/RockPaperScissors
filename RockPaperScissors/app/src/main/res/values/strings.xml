@@ -8,4 +8,5 @@
     <string name="cpuhandimageview">CpuHandImageView</string>
     <string name="cpu">CPU</string>
     <string name="you">YOU</string>
+    <string name="start">Start</string>
 </resources>
