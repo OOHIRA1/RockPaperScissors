@@ -19,6 +19,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/RankingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40sp"
+        android:onClick="RankingButtonClicked"
+        android:text="@string/registerRanking"
+        android:textSize="16sp" />
+
     <ImageView
         android:id="@+id/CPUHandImageView"
         android:layout_width="120sp"

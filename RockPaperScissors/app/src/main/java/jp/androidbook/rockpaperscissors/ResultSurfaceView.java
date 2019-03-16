@@ -19,6 +19,7 @@ public class ResultSurfaceView extends SurfaceView implements SurfaceHolder.Call
     TextView _countOfWinTextView;   //連勝回数を表示するテキストView
     int _countOfWin;                  //勝利回数
     Button[] _resultButtons;          //勝敗結果画面のボタン配列
+    private Button _rankingButton;                 //ランキング登録ボタン
 
     //コンストラクタ==============================================================================
     @Deprecated
@@ -34,7 +35,7 @@ public class ResultSurfaceView extends SurfaceView implements SurfaceHolder.Call
 
 
     //--プログラム上ではこちらのコンストラクタを使用する
-    public ResultSurfaceView(Context context, int result, TextView resultTextView, TextView countOfWinTextView, int countOfWin, Button[] resultButtons ) {
+    public ResultSurfaceView(Context context, int result, TextView resultTextView, TextView countOfWinTextView, int countOfWin, Button[] resultButtons, Button rankingButton ) {
         super(context);
         _result = result;
         _resultTextView = resultTextView;
@@ -44,6 +45,7 @@ public class ResultSurfaceView extends SurfaceView implements SurfaceHolder.Call
         for ( int i = 0; i < _resultButtons.length; i++ ) {
             _resultButtons[i] = resultButtons[i];
         }
+        _rankingButton = rankingButton;
     }
     //============================================================================================
 
@@ -89,6 +91,7 @@ public class ResultSurfaceView extends SurfaceView implements SurfaceHolder.Call
         for ( int i = 0; i < _resultButtons.length; i++ ) {
             _resultButtons[i].setVisibility(View.VISIBLE);
         }
+        _rankingButton.setVisibility(View.VISIBLE);
         ViewGroup viewGroup = (ViewGroup) this.getParent();
         viewGroup.removeView(this); //自身を取り除く処理
         return super.onTouchEvent(motionEvent);

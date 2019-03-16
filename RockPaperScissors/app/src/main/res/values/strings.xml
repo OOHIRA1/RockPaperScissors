@@ -9,4 +9,9 @@
     <string name="cpu">CPU</string>
     <string name="you">YOU</string>
     <string name="start">Start</string>
+    <string name="registerRanking">ランキング登録</string>
+    <string name="register">登録</string>
+    <string name="userName">名前：</string>
+    <string name="name">Name</string>
+    <string name="goTitle">タイトルへ</string>
 </resources>

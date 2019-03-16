@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView _resultTextView;               //勝敗を表示するテキストView
     private TextView _countOfWinTextView;           //連勝回数を表示するテキストView
     private Button[] _resultButtons;                  //勝敗結果画面で表示するボタン配列
+    private Button _rankingButton;                 //ランキング登録ボタン
     //=================================================================================
     private int _countOfWin;        //勝利回数
     private int _result;            //じゃんけんの勝敗(0:勝ち, 1:負け, 2:引き分け)
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         _resultButtons[BACK] = (Button)this.findViewById(R.id.Backbutton);
         _resultButtons[BACK].setVisibility(View.INVISIBLE);
         _result = -1;   //初期値は-1
+        _rankingButton = (Button)findViewById(R.id.RankingButton);
+        _rankingButton.setVisibility(View.INVISIBLE);
     }
     //=============================================================
 
@@ -122,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             _RPSbuttons[i].setVisibility(View.INVISIBLE);
         }
         _result = Judge(ROCK, cpuRPSIndex);
-        _resultSurfaceView = new ResultSurfaceView( this, _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons );
+        _resultSurfaceView = new ResultSurfaceView( this, _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons, _rankingButton);
         _resultSurfaceView.setBackgroundColor(Color.WHITE);
         viewGroup.addView(_resultSurfaceView, 0);
     }
@@ -136,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             _RPSbuttons[i].setVisibility(View.INVISIBLE);
         }
         _result = Judge(SCISSORS, cpuRPSIndex);
-        _resultSurfaceView = new ResultSurfaceView( this.getApplicationContext(), _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons);
+        _resultSurfaceView = new ResultSurfaceView( this.getApplicationContext(), _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons, _rankingButton);
         _resultSurfaceView.setBackgroundColor(Color.WHITE);
         viewGroup.addView(_resultSurfaceView, 0);
     }
@@ -150,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             _RPSbuttons[i].setVisibility(View.INVISIBLE);
         }
         _result = Judge(PAPER, cpuRPSIndex);
-        _resultSurfaceView = new ResultSurfaceView( this.getApplicationContext(), _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons);
+        _resultSurfaceView = new ResultSurfaceView( this.getApplicationContext(), _result, _resultTextView, _countOfWinTextView, _countOfWin, _resultButtons, _rankingButton);
         _resultSurfaceView.setBackgroundColor(Color.WHITE);
         viewGroup.addView(_resultSurfaceView, 0);
     }
@@ -177,11 +180,19 @@ public class MainActivity extends AppCompatActivity {
         yourHand.setImageBitmap(null);
         ImageView cpuHand  = (ImageView)this.findViewById(R.id.CPUHandImageView);
         cpuHand.setImageBitmap(null);
+        _rankingButton.setVisibility(View.INVISIBLE);   //ランキング登録ボタンを非表示
     }
 
 
     public void BackButtonClicked(View view) {
         Intent intent = new Intent(this, TitleActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void RankingButtonClicked(View view) {
+        Intent intent = new Intent(this, RegisterRankingActivity.class);
+        intent.putExtra("countOfWin", _countOfWin); //勝利回数の引継ぎ
         startActivity(intent);
     }
     //======================================================================================
