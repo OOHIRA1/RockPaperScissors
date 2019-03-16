@@ -1,5 +1,6 @@
 package jp.androidbook.rockpaperscissors;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -180,7 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void BackButtonClicked(View view) {
-
+        Intent intent = new Intent(this, TitleActivity.class);
+        startActivity(intent);
     }
     //======================================================================================
 }
