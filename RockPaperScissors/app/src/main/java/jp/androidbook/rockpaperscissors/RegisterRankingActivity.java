@@ -5,18 +5,22 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 //==ランキング登録画面アクティビティー
 public class RegisterRankingActivity extends AppCompatActivity {
     private EditText _editText; //入力された文字テキスト
-    private String _url = "http://gameprogram.shop/show_ranking.php";   //ランキング表示サイト
+    private String _url = "http://gameprogram.shop/show_ranking.html";   //ランキング表示サイト
+    private Button _browserButton;  //ブラウザ表示ボタン
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_ranking);
         _editText = (EditText)findViewById(R.id.editText);
+        _browserButton = (Button)findViewById(R.id.BrowserButton);
+        _browserButton.setVisibility(View.INVISIBLE);
     }
 
 
@@ -33,15 +37,20 @@ public class RegisterRankingActivity extends AppCompatActivity {
 
         //アップロード開始処理-----------------------------------------------------
         if ( userName.length() != 0 ) {
-            UploadTask uploadTask = new UploadTask( _url, userName, countOfWin );
+            UploadTask uploadTask = new UploadTask( _url, userName, countOfWin, _browserButton );
             uploadTask.execute(_url);
-            //ランキング表示サイトへアクセス--------------------
-            Uri uri = Uri.parse(_url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-            //-------------------------------------------------
+
         }
         //------------------------------------------------------------------------
+    }
+
+
+    public void BrowserButtonClicked(View view) {
+        //ランキング表示サイトへアクセス--------------------
+        Uri uri = Uri.parse(_url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+        //-------------------------------------------------
     }
     //=================================================================
 }

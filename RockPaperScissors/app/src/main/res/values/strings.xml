@@ -14,4 +14,5 @@
     <string name="userName">名前：</string>
     <string name="name">Name</string>
     <string name="goTitle">タイトルへ</string>
+    <string name="show">表示</string>
 </resources>

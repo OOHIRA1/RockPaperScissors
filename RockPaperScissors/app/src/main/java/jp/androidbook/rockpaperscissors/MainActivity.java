@@ -2,6 +2,7 @@ package jp.androidbook.rockpaperscissors;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     //=================================================================================
     private int _countOfWin;        //勝利回数
     private int _result;            //じゃんけんの勝敗(0:勝ち, 1:負け, 2:引き分け)
+    private String _url = "http://gameprogram.shop/insert_table_form.html";   //登録フォームサイト
 
 
 
@@ -191,9 +193,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void RankingButtonClicked(View view) {
+        //ランキング表示サイトへアクセス--------------------
+        Uri uri = Uri.parse(_url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+        //-------------------------------------------------
+        /*
+        //データをアプリ側からサーバーに送ることが出来なかったので、とりあえすサイトへ移動する仕様で代用しました...
         Intent intent = new Intent(this, RegisterRankingActivity.class);
         intent.putExtra("countOfWin", _countOfWin); //勝利回数の引継ぎ
         startActivity(intent);
+        */
     }
     //======================================================================================
 }
